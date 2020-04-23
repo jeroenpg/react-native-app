@@ -24,11 +24,11 @@ jobs:
       - name: Install gpg
         run: brew install gnupg
       - name: Decrypt ios certificates
-        run: ./ci/decrypt-ios-certificates.sh
+        run: sh ./ci/decrypt-ios-certificates.sh
         env:
           IOS_CERTIFICATES_PASSPHRASE: ${{ secrets.IOS_CERTIFICATES_PASSPHRASE }}  
       - name: Prepare ios certificates
-        run: ./ci/prepare-ios-certificates.sh
+        run: sh ./ci/prepare-ios-certificates.sh
         env:
           IOS_PROVISIONING_PROFILE_GUID: ${{ secrets.IOS_PROVISIONING_PROFILE_GUID }}
             
