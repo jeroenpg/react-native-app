@@ -53,29 +53,28 @@ jobs:
             ${{ runner.OS }}-pods-cache-
       - name: Install pods
         run: |
-          cd ios
-          pod install
+          cd ios & pod install & cd ..
         shell: bash
 
       - name: Build archive
         run: |
-          xcodebuild -workspace ReactNativeApp.xcworkspace \
+          xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
            archive \
            -scheme ReactNativeApp \
-           -archivePath ./build/ReactNativeApp.xcarchive
+           -archivePath ./ios/build/ReactNativeApp.xcarchive
 
       - name: Build ipa
         run: |
           xcodebuild -exportArchive \
-           -archivePath ./build/ReactNativeApp.xcarchive \ 
-           -exportPath ./build/ReactNativeApp \
+           -archivePath ./ios/build/ReactNativeApp.xcarchive \ 
+           -exportPath ./ios/build/ReactNativeApp \
            -exportOptionsPlist ${{ env.EXPORT_OPTIONS_PLIST }}
            
       - name: Archive IPA
         uses: actions/upload-artifact@v1
         with:
           name: app-release.ipa
-          path: ./build/ReactNativeApp/ReactNativeApp.ipa
+          path: ./ios/build/ReactNativeApp/ReactNativeApp.ipa
           
   # deploy:
   #   needs: build
