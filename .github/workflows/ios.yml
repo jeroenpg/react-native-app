@@ -58,14 +58,14 @@ jobs:
 
       - name: Build archive
         run: |
-          xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
+        sh ./ci/ios-unlock-keychain.sh & xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
            archive \
            -scheme ReactNativeApp \
            -archivePath ./ios/build/ReactNativeApp.xcarchive
 
       - name: Build ipa
         run: |
-          xcodebuild -exportArchive \
+        sh ./ci/ios-unlock-keychain.sh & xcodebuild -exportArchive \
            -archivePath ./ios/build/ReactNativeApp.xcarchive \ 
            -exportPath ./ios/build/ReactNativeApp \
            -exportOptionsPlist ${{ env.EXPORT_OPTIONS_PLIST }}
