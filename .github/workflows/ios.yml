@@ -2,7 +2,7 @@ name: iOS
 
 env:
   IOS_SDK: 'iphoneos13.4'
-  EXPORT_OPTIONS_PLIST: './ios/exportOptionsDev.plist'
+  EXPORT_OPTIONS_PLIST: './exportOptionsDev.plist'
 
 
 on: push
@@ -57,15 +57,16 @@ jobs:
         shell: bash
 
       - name: Build archive
-        run: |
-        sh ./ci/ios-unlock-keychain.sh & xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
+        - run: sh ./ci/ios-unlock-keychain.sh
+        - run: |
+          xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
            archive \
            -scheme ReactNativeApp \
            -archivePath ./ios/build/ReactNativeApp.xcarchive
-
       - name: Build ipa
-        run: |
-        sh ./ci/ios-unlock-keychain.sh & xcodebuild -exportArchive \
+        - run: sh ./ci/ios-unlock-keychain.sh
+        - run: |
+          xcodebuild -exportArchive \
            -archivePath ./ios/build/ReactNativeApp.xcarchive \ 
            -exportPath ./ios/build/ReactNativeApp \
            -exportOptionsPlist ${{ env.EXPORT_OPTIONS_PLIST }}
