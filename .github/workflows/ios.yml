@@ -98,6 +98,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.IOS_OUTPUT_FOLDER }}/ReactNativeApp.ipa
+          asset_path: ./app-release.ipa
           asset_name: ito-app-${{ steps.get_version.outputs.VERSION }}.ipa
           asset_content_type: application/zip
