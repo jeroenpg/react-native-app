@@ -21,6 +21,8 @@ jobs:
           repository: ito-org/ios-certificates
           token: ${{ secrets.ACCESS_TOKEN }}
           path: './ios-certificates'
+      - name: Install cocoapods
+        run: gem install cocoapods --pre
       - name: Install gpg
         run: brew install gnupg
       - name: Decrypt ios certificates
