@@ -55,7 +55,7 @@ jobs:
             ${{ runner.OS }}-pods-cache-
       - name: Install pods
         run: |
-          cd ios & pod install & cd ..
+          cd ios pod install
         shell: bash
 
       - name: Build archive
