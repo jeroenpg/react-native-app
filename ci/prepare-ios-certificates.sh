@@ -2,7 +2,7 @@
 
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 
-cp ./ios-Certificates/dev-provisioning.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$IOS_PROVISIONING_PROFILE_GUID
+cp ./ios-Certificates/dev-provisioning.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/$IOS_PROVISIONING_PROFILE_GUID.mobileprovision
 
 security create-keychain -p "" build.keychain
 security import ./ios-certificates/dev-certificate.p12  -t agg -k ~/Library/Keychains/build.keychain -P "" -A
