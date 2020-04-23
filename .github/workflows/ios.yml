@@ -59,11 +59,16 @@ jobs:
       - name: Build archive
         run: |
           sh ./ci/ios-unlock-keychain.sh
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
           xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
            archive \
            -scheme ReactNativeApp \
-           -archivePath ./ios/build/ReactNativeApp.xcarchive
+           -archivePath ./ios/build/ReactNativeApp.xcarchive \
+           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+        env:
+          IOS_PROVISIONING_PROFILE_GUID: ${{ secrets.IOS_PROVISIONING_PROFILE_GUID }}
+          CODE_SIGN_IDENTITY: ''
+          CODE_SIGNING_REQUIRED: 'NO'
+          CODE_SIGNING_ALLOWED: 'NO'
 
       - name: Build ipa
         run: |
