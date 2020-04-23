@@ -20,7 +20,7 @@ jobs:
         with:
           repository: ito-org/ios-certificates
           token: ${{ secrets.ACCESS_TOKEN }}
-          path: '/ios-certificates'
+          path: './ios-certificates'
       - name: Install gpg
         run: brew install gnupg
       - name: Decrypt ios certificates
