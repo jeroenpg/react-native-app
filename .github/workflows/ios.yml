@@ -23,8 +23,6 @@ jobs:
           path: './ios-certificates'
       - name: Install cocoapods
         run: gem install cocoapods --pre
-      - name: Install gpg
-        run: brew install gnupg
       - name: Decrypt ios certificates
         run: sh ./ci/decrypt-ios-certificates.sh
         env:
