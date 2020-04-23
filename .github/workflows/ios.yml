@@ -57,15 +57,16 @@ jobs:
         shell: bash
 
       - name: Build archive
-        - run: sh ./ci/ios-unlock-keychain.sh
-        - run: |
+        run: |
+          sh ./ci/ios-unlock-keychain.sh
           xcodebuild -workspace ./ios/ReactNativeApp.xcworkspace \
            archive \
            -scheme ReactNativeApp \
            -archivePath ./ios/build/ReactNativeApp.xcarchive
+
       - name: Build ipa
-        - run: sh ./ci/ios-unlock-keychain.sh
-        - run: |
+        run: |
+          sh ./ci/ios-unlock-keychain.sh
           xcodebuild -exportArchive \
            -archivePath ./ios/build/ReactNativeApp.xcarchive \ 
            -exportPath ./ios/build/ReactNativeApp \
