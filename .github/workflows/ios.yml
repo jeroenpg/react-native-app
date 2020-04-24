@@ -75,7 +75,7 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: app-release.ipa
-          path: ~/app-release.ipa
+          path: .
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -98,6 +98,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ~/app-release.ipa
+          asset_path: /home/runner/work/react-native-app/react-native-app/app-release.ipa
           asset_name: ito-app-${{ steps.get_version.outputs.VERSION }}.ipa
           asset_content_type: application/zip
