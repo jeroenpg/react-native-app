@@ -91,6 +91,12 @@ jobs:
             Changes in this Release:
           draft: true
           prerelease: true
+      - name: ls it
+        run: |
+          ls
+      - name: pwd it
+      run: |
+        pwd
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -98,6 +104,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /home/runner/work/react-native-app/react-native-app/app-release.ipa
+          asset_path: ./app-release.ipa
           asset_name: ito-app-${{ steps.get_version.outputs.VERSION }}.ipa
           asset_content_type: application/zip
