@@ -1,8 +1,9 @@
 name: iOS
 
 env:
-  IOS_SDK: 'iphoneos13.4'
+  IOS_CERTIFICATES_REPO: 'ito-org/ios-certificates'
   IOS_OUTPUT_FOLDER: './ios/build/ReactNativeApp'
+  IOS_PROVISIONING_PROFILE_GUID: 'D0DD9EFE-AAA2-468F-B7B8-493A2C4866BA'
   EXPORT_OPTIONS_PLIST: './ios/exportOptionsDev.plist'
 
 on: push
@@ -17,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
-          repository: ito-org/ios-certificates
+          repository: ${{ env.IOS_CERTIFICATES_REPO }}
           token: ${{ secrets.ACCESS_TOKEN }}
           path: './ios-certificates'
       - name: Install cocoapods
@@ -29,7 +30,7 @@ jobs:
       - name: Prepare ios certificates
         run: sh ./ci/prepare-ios-certificates.sh
         env:
-          IOS_PROVISIONING_PROFILE_GUID: ${{ secrets.IOS_PROVISIONING_PROFILE_GUID }}     
+          IOS_PROVISIONING_PROFILE_GUID: ${{ env.IOS_PROVISIONING_PROFILE_GUID }}     
       - name: Install npm
         run: |
           npm ci
